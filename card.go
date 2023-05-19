@@ -52,12 +52,15 @@ func (c Card) String() string {
 	return fmt.Sprintf("%s of %ss", c.Rank.String(), c.Suit.String())
 }
 
-func New() []Card {
+func New(opts ...func([]Card) []Card) []Card {
 	var cards []Card
 	for _, suit := range suits {
 		for rank := minRank; rank <= maxRank; rank++ {
 			cards = append(cards, Card{Suit: suit, Rank: rank})
 		}
+	}
+	for _, opt := range opts {
+		cards = opt(cards)
 	}
 	return cards
 }
