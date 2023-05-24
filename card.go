@@ -124,3 +124,13 @@ func Filter(f func(card Card) bool) func([]Card) []Card {
 		return result
 	}
 }
+
+func Deck(n int) func([]Card) []Card {
+	return func(cards []Card) []Card {
+		var result []Card
+		for i := 0; i < n; i++ {
+			result = append(result, cards...)
+		}
+		return result
+	}
+}

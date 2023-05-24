@@ -67,3 +67,12 @@ func TestFilter(t *testing.T) {
 		}
 	}
 }
+
+func TestDeck(t *testing.T) {
+	cards := New(Deck(3))
+	want := 13 * 4 * 3
+	got := len(cards)
+	if want != got {
+		t.Errorf("Expected %d cards, got %d\n", want, got)
+	}
+}
