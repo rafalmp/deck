@@ -92,10 +92,12 @@ func absRank(c Card) int {
 	return int(c.Suit)*int(maxRank) + int(c.Rank)
 }
 
+var shuffleRand = rand.New(rand.NewSource(time.Now().Unix()))
+
 func Shuffle(cards []Card) []Card {
 	result := make([]Card, len(cards))
-	r := rand.New(rand.NewSource(time.Now().Unix()))
-	for i, j := range r.Perm(len(cards)) {
+	perm := shuffleRand.Perm(len(cards))
+	for i, j := range perm {
 		result[i] = cards[j]
 	}
 	return result
